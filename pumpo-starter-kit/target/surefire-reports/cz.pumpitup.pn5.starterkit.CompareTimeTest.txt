@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: cz.pumpitup.pn5.starterkit.CompareTimeTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 38.091 s <<< FAILURE! - in cz.pumpitup.pn5.starterkit.CompareTimeTest
+cz.pumpitup.pn5.starterkit.CompareTimeTest.compareTimes(Firefox,HttpClient)  Time elapsed: 38.082 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Unable to locate element: //div[@id='qc-cmp2-ui']//button[@mode='primary']
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.1.0', revision: '87802e897b'
+System info: host: 'DESKTOP-PIVJ1NI', ip: '192.168.0.234', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.1.1'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [3b4948ea-f062-44b9-ae6a-4a61813ccc45, findElement {using=xpath, value=//div[@id='qc-cmp2-ui']//button[@mode='primary']}]
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 97.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220202182137, moz:geckodriverVersion: 0.29.1, moz:headless: false, moz:processID: 104, moz:profile: /tmp/rust_mozprofileYhpjQ3, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 3b4948ea-f062-44b9-ae6a-4a61813ccc45
+	at cz.pumpitup.pn5.starterkit.CompareTimeTest.compareTimes(CompareTimeTest.java:15)
+

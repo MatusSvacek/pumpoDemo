@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: cz.pumpitup.pn5.starterkit.GetTimeFromWebTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 33.488 s <<< FAILURE! - in cz.pumpitup.pn5.starterkit.GetTimeFromWebTest
+cz.pumpitup.pn5.starterkit.GetTimeFromWebTest.getCurrentTimeOnTheWeb(Firefox)  Time elapsed: 33.487 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Unable to locate element: //div[@id='qc-cmp2-ui']//button[@mode='primary']
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.1.0', revision: '87802e897b'
+System info: host: 'DESKTOP-PIVJ1NI', ip: '192.168.0.234', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.1.1'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [b12e472b-9346-42d9-8de8-e328b081fe03, findElement {using=xpath, value=//div[@id='qc-cmp2-ui']//button[@mode='primary']}]
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 97.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220202182137, moz:geckodriverVersion: 0.29.1, moz:headless: false, moz:processID: 104, moz:profile: /tmp/rust_mozprofilecx52mq, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: b12e472b-9346-42d9-8de8-e328b081fe03
+	at cz.pumpitup.pn5.starterkit.GetTimeFromWebTest.getCurrentTimeOnTheWeb(GetTimeFromWebTest.java:13)
+

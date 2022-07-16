@@ -1,0 +1,359 @@
+<html lang="en"><head>
+    <!-- Cache control -->
+    <meta http-equiv="Cache-Control" content="max-age=0, no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Wed, 11 Jan 1984 05:00:00 GMT">
+
+    <meta charset="UTF-8">
+    <title>Test configuration</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Test Automation Framework">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: 'unsafe-inline'
+        cdn.jsdelivr.net/npm/
+        unpkg.com/prismjs/components/
+        data:image/svg+xml,%3Csvg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+    <style>
+        :root {
+            --code-block-padding: 0.75em;
+            --sidebar-nav-link-before-content-l3--active: none;
+            --sidebar-nav-link-before-content-l3: none;
+            --sidebar-width: 25rem
+        }
+
+        .markdown-section {
+            max-width: 95%;
+        }
+
+        button.docsify-copy-code-button {
+            font-size: small;
+            padding: 4pt;
+        }
+
+        .sidebar-nav ul ul ul ul {
+            font-size: small;
+        }
+
+        .sidebar-nav a, .sidebar nav a {
+            white-space: normal;
+            line-height: 100%;
+            margin-bottom: 0.3em;
+        }
+
+
+    </style>
+<style type="text/css">.docsify-copy-code-button,.docsify-copy-code-button span{cursor:pointer;transition:all .25s ease}.docsify-copy-code-button{position:absolute;z-index:1;top:0;right:0;overflow:visible;padding:.65em .8em;border:0;border-radius:0;outline:0;font-size:1em;background:grey;background:var(--theme-color,grey);color:#fff;opacity:0}.docsify-copy-code-button span{border-radius:3px;background:inherit;pointer-events:none}.docsify-copy-code-button .error,.docsify-copy-code-button .success{position:absolute;z-index:-100;top:50%;right:0;padding:.5em .65em;font-size:.825em;opacity:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.docsify-copy-code-button.error .error,.docsify-copy-code-button.success .success{right:100%;opacity:1;-webkit-transform:translate(-115%,-50%);transform:translate(-115%,-50%)}.docsify-copy-code-button:focus,pre:hover .docsify-copy-code-button{opacity:1}</style></head>
+<body data-page="configuration/test-configuration.md" class="ready">
+<section class="cover" style="background: linear-gradient(to left bottom, hsl(85, 100%, 85%) 0%,hsl(47, 100%, 85%) 100%)"><div class="mask"></div><div class="cover-main"><h1 id="pumpo5"><a href="#/?id=pumpo5" data-id="pumpo5" class="anchor"><span>Pumpo#5</span></a></h1><blockquote>
+<p>Automated end-to-end testing</p></blockquote>
+<ul><li>Tests as code</li><li>Declarative page objects</li><li>Beyond web all other endpoints within the same test flow</li><li>Ready for the most secure enterprise environment </li></ul><p><a href="#/getting-started/" style="">Getting Started</a></p></div></section><main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><div class="sidebar-nav"><ul><li><a href="#/" title="Pumpo#5">Pumpo#5</a></li><li><a href="#/getting-started/" title="Getting started">Getting started</a><ul><li><a href="#/getting-started/prerequisites" title="Prerequisites">Prerequisites</a></li><li><a href="#/getting-started/local-test-farm" title="Local test farm">Local test farm</a></li><li><a href="#/getting-started/first-test" title="First test">First test</a></li><li><a href="#/getting-started/advanced-test" title="Advanced test">Advanced test</a></li></ul></li><li><a href="#/architecture/" title="Architecture">Architecture</a></li><li><a href="#/reference/" title="Reference">Reference</a><ul><li><a href="#/reference/web" title="Web">Web</a></li><li><a href="#/reference/http" title="HTTP">HTTP</a></li><li><a href="#/reference/kafka" title="Kafka">Kafka</a></li><li><a href="#/reference/sql" title="SQL">SQL</a></li><li><a href="#/reference/sftp" title="SFTP">SFTP</a></li><li><a href="#/reference/samba" title="Samba">Samba</a></li><li><a href="#/reference/reporting" title="Reporting">Reporting</a></li><li><a href="#/reference/jamulator" title="Jamulator">Jamulator</a></li></ul></li><li><a href="#/configuration/" title="Configuration">Configuration</a><ul><li class="active"><a href="#/configuration/test-configuration" title="Test configuration">Test configuration</a></li><li><a href="#/configuration/farm-configuration" title="Farm configuration">Farm configuration</a></li><li><a href="#/configuration/test-scope-configuration" title="Test scope configuration">Test scope configuration</a></li></ul></li><li><a href="#/contribution/contributing" title="Contribution">Contribution</a></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h1 id="test-configuration"><a href="#/configuration/test-configuration?id=test-configuration" data-id="test-configuration" class="anchor"><span>Test configuration</span></a></h1><p>Configuration to the Pumpo#5 framework is done mainly thanks to configuration files. The main configuration file must be named exactly <code>config.conf</code> and must be placed exactly on the following path:</p><p><code>src/test/resources/config.conf</code></p><h2 id="nested-configuration"><a href="#/configuration/test-configuration?id=nested-configuration" data-id="nested-configuration" class="anchor"><span>Nested configuration</span></a></h2><p>The configuration file can contain:</p><ol><li>Key value pairs using the syntax <code>key=value</code> on each line. In case the value is a string, it must be enclosed in double quotes.</li><li>Relative path to another configuration file to be included using the syntax <code>include "directory/other-config-file.conf"</code>.</li></ol><p>Nesting of configuration files is unlimited. All key value pairs are flattened. In case a key is present several times, the value of the last occurrence will be taken.</p><p>This pattern can be used in most complex environments where each person is responsible to maintain configuration for a set of systems under test. By splitting the configuration map into many files it is much easier to manage the configuration using any git flow because merge conflicts will be very limited.</p><h2 id="connection-to-the-testing-farm"><a href="#/configuration/test-configuration?id=connection-to-the-testing-farm" data-id="connection-to-the-testing-farm" class="anchor"><span>Connection to the testing farm</span></a></h2><p>In most cases the most important configuration is the URL of the testing farm. It needs to be configured under the key <code>webdriver.url</code>. For example when using a paid service Browserstack, the configuration would look like:</p><pre v-pre="" data-lang="properties"><code class="lang-properties"><span class="token key attr-name">webdriver.url</span><span class="token punctuation">=</span><span class="token value attr-value">"https://&lt;user&gt;&gt;:&lt;token&gt;@hub-cloud.browserstack.com/wd/hub"</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre><p>In case you are running your own farm based on our docker-compose on your computer, then it would look like:</p><pre v-pre="" data-lang="properties"><code class="lang-properties"><span class="token key attr-name">webdriver.url</span><span class="token punctuation">=</span><span class="token value attr-value">"http://127.0.0.1:4444/wd/hub"</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre><h2 id="connection-to-systems-under-test"><a href="#/configuration/test-configuration?id=connection-to-systems-under-test" data-id="connection-to-systems-under-test" class="anchor"><span>Connection to systems under test</span></a></h2><p>A critical topic is how to manage all configurable values required to connecting to systems under test. Those include mainly:</p><ul><li>URLs</li><li>Authentication credentials</li><li>Timeouts and other non-functional settings The Pumpo#5 library includes a pattern how to manage those settings in configuration files that may or not be included in the versioning system and how to pass the values to the intermediary clients connecting to systems under tests (mainly browsers but also other clients called drivers).</li></ul><h4 id="configuration-as-session-capabilities"><a href="#/configuration/test-configuration?id=configuration-as-session-capabilities" data-id="configuration-as-session-capabilities" class="anchor"><span>Configuration as session capabilities</span></a></h4><p>One way to configure credentials and other settings when using any browser, emulator or proxy (hereafter called driver) is to pass them as session capabilities using the @Capability annotation as follows:</p><pre v-pre="" data-lang="java"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestClass</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"browserName"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"driverId"</span><span class="token punctuation">)</span>
+                           <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"key1"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"configKey1"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                                   <span class="token class-name">AbcApplication</span> abcApplication<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        abcApplication<span class="token punctuation">.</span><span class="token function">step1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">step2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre><p>Where:</p><ul><li><strong><em>AbcApplication</em></strong> is the selected class of type Application that represents the system under test</li><li><strong>key1</strong> is the key of the setting</li><li><strong>configKey1</strong> is the key under which the value of the setting can be found anywhere in the nested configuration files</li><li><strong>type</strong> is the type of the value, ValueType.STRING_PROPERTY in most cases</li></ul><p>Usually those key value pairs include some url and optionally authentication details or non-functional settings such as timeouts or connection modes which is specific to each underlying technical stack.</p><p>Unlimited number of capabilities can be specified. Capabilities are serialised as a map and passed to the target driver during session initialisation. In case you need to change capabilities during one test, you need to instantiate another application and pass different capabilities to it.</p><h4 id="configuration-as-method-arguments"><a href="#/configuration/test-configuration?id=configuration-as-method-arguments" data-id="configuration-as-method-arguments" class="anchor"><span>Configuration as method arguments</span></a></h4><p>Another way to configure connection to systems under test is to pass values as arguments in the methods that are specific for each client (domain). The main example is how URLs are defined for the WEB domain or how endpoints are defined for the REST/SOAP/HTTP domain, see below.</p><hr>
+<h3 id="session-settings"><a href="#/configuration/test-configuration?id=session-settings" data-id="session-settings" class="anchor"><span>Session settings</span></a></h3><p>Session settings can be passed to the test farm using the <code>@Capability</code> annotation of whatever proxy host (browser or any other driver).</p><table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sessionTimeout</td>
+<td>String</td>
+<td>Timeout until the session is killed if there is no activity. It is specified in seconds, e.g. "120s". Default value is "70s".</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the session that can be used e.g. to specify the name of the tester or of the test itself</td>
+</tr>
+<tr>
+<td>enableVNC</td>
+<td>boolean</td>
+<td>Enable VNC on the test farm UI - makes sense only for browsers</td>
+</tr>
+<tr>
+<td>pn5:manualSession</td>
+<td>boolean</td>
+<td>Whether a session should be handled manually</td>
+</tr>
+<tr>
+<td>pn5:keepSession</td>
+<td>boolean</td>
+<td>Whether the session should be kept open event if test successful or aborted</td>
+</tr>
+<tr>
+<td>pn5<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/lookup.png" alt="lookup">default</td>
+<td>String</td>
+<td>Which type should be used as default for element lookup</td>
+</tr>
+</tbody></table>
+<p>We do not reproduce documentation of standard capabilities supported by Selenoid, only those that are key based on our experience. Please see an exhaustive list in the <a href="https://aerokube.com/selenoid/1.6.1/#_special_capabilities" target="_self">reference documentation</a></p><h4 id="pn5manualsession"><a href="#/configuration/test-configuration?id=pn5manualsession" data-id="pn5manualsession" class="anchor"><span>pn5:manualSession</span></a></h4><p>When set to <code>true</code> session opening will not be handled automatically and one needs to call the method sessionStart(). Later on the methods sessionClose() and again sessionStart() can be called to close the session and reopen it later.  This enables to start the session just in time or to close it immediately after using the driver even if the test still continues. This enables long-running tests to not consume resources on the test farm while not necessary. Note: sessions are automatically closed if the test is successful or aborted. To keep the session open see the other session related annotation driver8:keepSession below.</p><p>Note: Even if this annotation is an extension of the protocol it will also work with commercial test farms because session is closed from the client side.</p><h4 id="pn5keepsession"><a href="#/configuration/test-configuration?id=pn5keepsession" data-id="pn5keepsession" class="anchor"><span>pn5:keepSession</span></a></h4><p>When set to <code>true</code> the session will not be closed even if the test is successful or aborted. By default any session is immediately closed after the test is successful or aborted. This helps to keep resource consumption as low as possible. In case of test failure the configured (or default) session timeout will be used by the test farm even if the client (test) has disconnected.</p><p>Note: Even if this annotation is an extension of the protocol it will also work with commercial test farms because session is closed from the client side.</p><h4 id="pn5lookupdefault"><a href="#/configuration/test-configuration?id=pn5lookupdefault" data-id="pn5lookupdefault" class="anchor"><span>pn5<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/lookup.png" alt="lookup">default</span></a></h4><p>What lookup type should be used as default. This value should be remembered and used for all annotations where "by" is set to DEFAULT.</p><p>Valid values are "id", "xpath", "name", "text", "className", "description", "automatorCommand", "method" and "default" (which is application dependent).</p><p>Please, bear in mind that not all the lookup types are valid and available, depending on which application type you are testing.</p><h3 id="web"><a href="#/configuration/test-configuration?id=web" data-id="web" class="anchor"><span>WEB</span></a></h3><p>Websites are tested via browsers that run remotely on a test farm. To use such remote browser in a test method the test method needs to be passed as argument a WebApplication annotated with following capabilities:</p><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>browserName</td>
+<td>N/A</td>
+<td>Mandatory</td>
+<td>Value needs to match the test farm configuration.</td>
+</tr>
+</tbody></table>
+<p>Configuration of web urls and credentials for websites / web applications is defined in the page objects representing the application. A page object looks typically as:</p><pre v-pre="" data-lang="java"><code class="lang-java">
+<span class="token annotation punctuation">@Navigate</span><span class="token punctuation">(</span><span class="token string">"https://www.google.com"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SearchPage</span> <span class="token keyword">extends</span> <span class="token class-name">WebDriverAccessor</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@SetValue</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"q"</span><span class="token punctuation">,</span> by <span class="token operator">=</span> <span class="token class-name">Lookup</span><span class="token punctuation">.</span>NAME<span class="token punctuation">)</span>
+    <span class="token class-name">SearchPage</span> <span class="token function">typeIntoSearchBox</span><span class="token punctuation">(</span><span class="token class-name">String</span> term<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@ExtendedAction</span>
+    <span class="token keyword">default</span> <span class="token class-name">SearchPage</span> <span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">getDriver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findElement</span><span class="token punctuation">(</span><span class="token class-name">By</span><span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token string">"q"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">SearchResultsPage</span> <span class="token function">onSearchResultsPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre><p>The annotation <code>@Navigate("https://www.google.com")</code> contains the configuration of where to find the SearchPage.</p><hr>
+<h3 id="http"><a href="#/configuration/test-configuration?id=http" data-id="http" class="anchor"><span>HTTP</span></a></h3><p>To use a remote HTTP driver in a test method the test method needs to be passed as argument a HttpApplication annotated with following capabilities:</p><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>browserName</td>
+<td>N/A</td>
+<td>Mandatory</td>
+<td>Value needs to match the test farm configuration.</td>
+</tr>
+</tbody></table>
+<h4 id="browsername"><a href="#/configuration/test-configuration?id=browsername" data-id="browsername" class="anchor"><span>browserName</span></a></h4><p>This capability allows routing commands to the right driver. The value needs to be inline with what is configured on your test farm infrastructure. Our default is to use <code>pn5-driver8</code> for all areas covered by our universal component Driver8.</p><h4 id="endpoint"><a href="#/configuration/test-configuration?id=endpoint" data-id="endpoint" class="anchor"><span>Endpoint</span></a></h4><p>Configuration of endpoints to accessed is passed using one of the domain specific methods <code>prepareRestRequest</code>, <code>prepareSoapRequest</code> or <code>prepareHttpRequest</code>.</p><h4 id="examples"><a href="#/configuration/test-configuration?id=examples" data-id="examples" class="anchor"><span>Examples</span></a></h4><p>The following test will connect to the REST endpoint <a href="https://foobar.com/api/dogs" target="_self">https://foobar.com/api/dogs</a> using the HTTP GET method and assert that the response code is 200. </p><pre v-pre="" data-lang="java"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">listDogs</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"browserName"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"pn5-driver8"</span><span class="token punctuation">)</span>
+                                <span class="token class-name">HttpApplication</span> restClient<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        restClient
+                <span class="token punctuation">.</span><span class="token function">prepareRestRequest</span><span class="token punctuation">(</span><span class="token string">"https://foobar.com/api/dogs"</span><span class="token punctuation">,</span><span class="token string">"GET"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">sendAndGetResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">assertStatus</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre><hr>
+<h3 id="sql"><a href="#/configuration/test-configuration?id=sql" data-id="sql" class="anchor"><span>SQL</span></a></h3><p>To use a remote SQL driver in a test method the test method needs to be passed as argument a SqlApplication annotated with following capabilities:</p><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>browserName</td>
+<td>N/A</td>
+<td>Mandatory</td>
+<td>Value needs to match the test farm configuration.</td>
+</tr>
+<tr>
+<td>pn5:queryTimeout</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Timeout in seconds waiting for a query to return.</td>
+</tr>
+<tr>
+<td>pn5:sqlDialect</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The dialect of the database server</td>
+</tr>
+<tr>
+<td>pn5:sqlHostname</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The hostname of the database server</td>
+</tr>
+<tr>
+<td>pn5:sqlPort</td>
+<td>Integer</td>
+<td>Mandatory</td>
+<td>The port of the database server</td>
+</tr>
+<tr>
+<td>pn5:sqlDatabase</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The name of the database / schema</td>
+</tr>
+<tr>
+<td>pn5:sqlUsername</td>
+<td>String</td>
+<td>Optional</td>
+<td>Username to authenticate with</td>
+</tr>
+<tr>
+<td>pn5:sqlPassword</td>
+<td>String</td>
+<td>Optional</td>
+<td>Password to authenticate with</td>
+</tr>
+</tbody></table>
+<h4 id="browsername-1"><a href="#/configuration/test-configuration?id=browsername-1" data-id="browsername-1" class="anchor"><span>browserName</span></a></h4><p>This capability allows routing commands to the right driver. The value needs to be inline with what is configured on your test farm infrastructure. Our default value is <code>pn5-driver8</code> for all areas covered by our universal component Driver8.</p><h4 id="pn5querytimeout"><a href="#/configuration/test-configuration?id=pn5querytimeout" data-id="pn5querytimeout" class="anchor"><span>pn5:queryTimeout</span></a></h4><p>This capability allows setting a timeout, in seconds, to wait for a query or update statement being executed to return a result. The default value is <code>60</code> seconds.</p><h4 id="pn5sqldialect"><a href="#/configuration/test-configuration?id=pn5sqldialect" data-id="pn5sqldialect" class="anchor"><span>pn5:sqlDialect</span></a></h4><p>The dialect of the database server to connect to. Possible values are <code>sqlServer</code>, <code>postgresql</code>, <code>mysql</code> and <code>mariadb</code></p><h4 id="pn5sqlhostname"><a href="#/configuration/test-configuration?id=pn5sqlhostname" data-id="pn5sqlhostname" class="anchor"><span>pn5:sqlHostname</span></a></h4><p>The hostname of the database server to connect to. Can be a fully qualified domain name or IP address.</p><h4 id="pn5sqlport"><a href="#/configuration/test-configuration?id=pn5sqlport" data-id="pn5sqlport" class="anchor"><span>pn5:sqlPort</span></a></h4><p>The port on which the database server is listening. Should be an integer.</p><h4 id="pn5sqlusername"><a href="#/configuration/test-configuration?id=pn5sqlusername" data-id="pn5sqlusername" class="anchor"><span>pn5:sqlUsername</span></a></h4><p>The username to use when authenticating with the database server.</p><h4 id="pn5sqlpassword"><a href="#/configuration/test-configuration?id=pn5sqlpassword" data-id="pn5sqlpassword" class="anchor"><span>pn5:sqlPassword</span></a></h4><p>The password to use when authenticating with the database server.</p><h4 id="examples-1"><a href="#/configuration/test-configuration?id=examples-1" data-id="examples-1" class="anchor"><span>Examples</span></a></h4><p>The following test will connect to a Microsoft SQL Server on hostname and port to be found in configuration files under keys <strong>sql.host</strong> and <strong>sql.port</strong>, use the schema configured under key <strong>sql.db</strong>. Dialect is configured under key <strong>sql.dialect</strong>. Authentication will use the user and password to be found in configuration files under keys <strong>sql.user</strong> and <strong>sql.pass</strong>. Query timeout is set to 5 seconds.</p><pre v-pre="" data-lang="java"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Test</span>
+  <span class="token keyword">void</span> <span class="token function">listRows</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"browserName"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"pn5-driver8"</span><span class="token punctuation">)</span>
+                <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:sqlDialect"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"sql.dialect"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:sqlHostname"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"sql.host"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:sqlPort"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"sql.port"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>INTEGER_PROPERTY<span class="token punctuation">)</span>
+                <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:sqlDatabase"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"sql.db"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:sqlUsername"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"sql.user"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:sqlPassword"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"sql.pass"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:queryTimeout"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"5"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>INTEGER<span class="token punctuation">)</span>
+                        <span class="token class-name">SqlApplication</span> sqlClient<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+      client
+              <span class="token punctuation">.</span><span class="token function">prepareQuery</span><span class="token punctuation">(</span><span class="token string">"select count(*) FROM [schemaName].[tableName] WHERE [name] = '#{name}'"</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">withParam</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"John Doe"</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre><hr>
+<h3 id="sftp"><a href="#/configuration/test-configuration?id=sftp" data-id="sftp" class="anchor"><span>SFTP</span></a></h3><p>To use a remote SFTP driver in a test method the test method needs to be passed as argument a SftpApplication annotated with following capabilities:</p><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>browserName</td>
+<td>N/A</td>
+<td>Mandatory</td>
+<td>Value needs to match the test farm configuration.</td>
+</tr>
+<tr>
+<td>pn5:sftpHost</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The SFTP server host to connect to.</td>
+</tr>
+<tr>
+<td>pn5:sftpPort</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The SFTP server port to connect to.</td>
+</tr>
+<tr>
+<td>pn5:sftpUsername</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The username to authenticate with against the SFTP server.</td>
+</tr>
+<tr>
+<td>pn5:sftpPassword</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The password to authenticate with against the SFTP server.</td>
+</tr>
+</tbody></table>
+<h4 id="browsername-2"><a href="#/configuration/test-configuration?id=browsername-2" data-id="browsername-2" class="anchor"><span>browserName</span></a></h4><p>This capability allows routing commands to the right driver. The value needs to be inline with what is configured on your test farm infrastructure. Our default is to use <code>pn5-sftp</code>  for all areas covered by our universal component Driver8.</p><h4 id="pn5sftphost"><a href="#/configuration/test-configuration?id=pn5sftphost" data-id="pn5sftphost" class="anchor"><span>pn5:sftpHost</span></a></h4><p>The host of the SFTP server. Can be a fully qualified domain name or IP address. No protocol qualifier should be specified.</p><h4 id="pn5sftpport"><a href="#/configuration/test-configuration?id=pn5sftpport" data-id="pn5sftpport" class="anchor"><span>pn5:sftpPort</span></a></h4><p>The port on which the SFTP server is listening. Beware that communication on the standard port 22 is usually not allowed by default in enterprise environments.</p><h4 id="pn5sftpusername"><a href="#/configuration/test-configuration?id=pn5sftpusername" data-id="pn5sftpusername" class="anchor"><span>pn5:sftpUsername</span></a></h4><p>The user to authenticate with against the SFTP server.</p><h4 id="pn5sftppassword"><a href="#/configuration/test-configuration?id=pn5sftppassword" data-id="pn5sftppassword" class="anchor"><span>pn5:sftpPassword</span></a></h4><p>The password to authenticate with against the SFTP server.</p><h4 id="examples-2"><a href="#/configuration/test-configuration?id=examples-2" data-id="examples-2" class="anchor"><span>Examples</span></a></h4><p>TODO</p><hr>
+<h3 id="kafka"><a href="#/configuration/test-configuration?id=kafka" data-id="kafka" class="anchor"><span>KAFKA</span></a></h3><p>To use a remote Kafka driver in a test method the test method needs to be passed as argument a KafkaApplication annotated with following capabilities:</p><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>browserName</td>
+<td>N/A</td>
+<td>Mandatory</td>
+<td>Value needs to match the test farm configuration.</td>
+</tr>
+<tr>
+<td>pn5:kafkaUrl</td>
+<td>String</td>
+<td>Mandatory</td>
+<td>The URL in the form <code>host:port</code>, without any protocol qualifier.</td>
+</tr>
+<tr>
+<td>pn5:kafkaUsername</td>
+<td>String</td>
+<td>Optional</td>
+<td>The username to use when authentication is enabled. In case Kafka accepts anonymous access, the parameter must not be passed.</td>
+</tr>
+<tr>
+<td>pn5:kafkaPassword</td>
+<td>String</td>
+<td>Optional</td>
+<td>The password to use when username has been specified. In case username was not specified, password will be ignored.</td>
+</tr>
+<tr>
+<td>pn5:kafkaGroupId</td>
+<td>String</td>
+<td>Optional</td>
+<td>The consumer group id to be used in case a read query is processed.</td>
+</tr>
+</tbody></table>
+<h4 id="browsername-3"><a href="#/configuration/test-configuration?id=browsername-3" data-id="browsername-3" class="anchor"><span>browserName</span></a></h4><p>This capability allows routing commands to the right driver. The value needs to be inline with what is configured on your test farm infrastructure. Our default is to use <code>pn5-kafka</code> for all areas covered by our universal component Driver8.</p><h4 id="pn5kafkaurl"><a href="#/configuration/test-configuration?id=pn5kafkaurl" data-id="pn5kafkaurl" class="anchor"><span>pn5:kafkaUrl</span></a></h4><p>Kafka url can be specified using a hostname, or an IP address and a port in the form <code>host:port</code>. In case kafka uses authentication over SSL the certificate provided by Kafka during the handshake must
+match the host specified in the configuration.</p><p>In case you are using a certificate authority that is not trusted by standard JDK distributions then the driver needs to be enhanced with the certification authority of your choice.</p><h4 id="pn5kafkausername-pn5kafkapassword"><a href="#/configuration/test-configuration?id=pn5kafkausername-pn5kafkapassword" data-id="pn5kafkausername-pn5kafkapassword" class="anchor"><span>pn5:kafkaUsername + pn5:kafkaPassword</span></a></h4><p>The consumer group id to be used in case a read query is processed. If the parameter is omitted then manual assignment will be used and this is probably the preferred way to work with Kafka in tests.</p><h4 id="pn5kafkagroupid"><a href="#/configuration/test-configuration?id=pn5kafkagroupid" data-id="pn5kafkagroupid" class="anchor"><span>pn5:kafkaGroupId</span></a></h4><p>Kafka username and password are used both in authentication using SASL_PLAINTEXT or SASL_SSL with PLAIN mechanism. Currently, only SASL_SSL with PLAIN mechanism are supported (and anonymous).</p><h4 id="examples-3"><a href="#/configuration/test-configuration?id=examples-3" data-id="examples-3" class="anchor"><span>Examples</span></a></h4><p>The following test will connect to Kafka on the url that needs to be found in configuration files under the key <strong>kafka.url</strong> using no authentication (anonymous) access.</p><pre v-pre="" data-lang="java"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestClass</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">topicListTest</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"browserName"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"pn5-driver8"</span><span class="token punctuation">)</span>
+                              <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:kafkaUrl"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"kafka.url"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                                      <span class="token class-name">KafkaApplication</span> kafka<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        kafka
+                <span class="token punctuation">.</span><span class="token function">listTopics</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">assertThatContainsTopicNamed</span><span class="token punctuation">(</span><span class="token string">"shouldExist"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre><p>The following test will connect to Kafka on the url that needs to be found in configuration files under the key <strong>kafka.url</strong> using SASL_SSL with PLAIN mechanism authentication with username and
+password to be found in config files under respective keys <strong>kafka.username</strong> and <strong>kafka.password</strong>. In case a read query is to be processed the groupId "testGroup" will be used.</p><pre v-pre="" data-lang="java"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestClass</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">topicListTest</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"browserName"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"pn5-driver8"</span><span class="token punctuation">)</span>
+                              <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:kafkaUrl"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"kafka.url"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                              <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:kafkaUsername"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"kafka.username"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                              <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:kafkaPassword"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"kafka.password"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                              <span class="token annotation punctuation">@Capability</span><span class="token punctuation">(</span>key <span class="token operator">=</span> <span class="token string">"pn5:kafkaGroupId"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"testGroup"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ValueType</span><span class="token punctuation">.</span>STRING_PROPERTY<span class="token punctuation">)</span>
+                                      <span class="token class-name">KafkaApplication</span> kafka<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        kafka
+                <span class="token punctuation">.</span><span class="token function">listTopics</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">assertThatDoesNotContainTopicNamed</span><span class="token punctuation">(</span><span class="token string">"shouldNotExist"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error">Error</span><span class="success">Copied</span></button></pre></article></section></main>
+<script>
+    window.$docsify = {
+        coverpage: true,
+        loadSidebar: true,
+        subMaxLevel: 3,
+        name: '',
+        repo: '',
+        externalLinkTarget: '_self',
+        copyCode: {
+            buttonText: 'Copy to clipboard',
+            errorText: 'Error',
+            successText: 'Copied'
+        }
+    }
+</script>
+<!-- Docsify v4 -->
+<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-properties.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+
+
+<div class="progress" style="opacity: 0; width: 0%;"></div></body></html>

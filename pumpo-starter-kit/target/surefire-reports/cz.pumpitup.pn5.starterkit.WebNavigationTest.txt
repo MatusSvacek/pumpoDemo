@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: cz.pumpitup.pn5.starterkit.WebNavigationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.896 s - in cz.pumpitup.pn5.starterkit.WebNavigationTest
